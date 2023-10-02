@@ -3,6 +3,8 @@ import {Routes,Route,useLocation,useNavigate} from 'react-router-dom'
 import './App.css'
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
+import FormCustom from './components/FormCustom/FormCustom';
+import { CreateProduct } from './components/CreateProduct/createProduct';
 
 function App() {
 
@@ -21,15 +23,18 @@ function App() {
     }
  }
 
- useEffect(() => {
-  !access && navigate('/');
-}, [access, navigate]);
+//  useEffect(() => {
+//   !access && navigate('/');
+// }, [access, navigate]);
 
   return (
     <>
         <Routes>
-          <Route path='/' element={<Login login={login}/>}></Route>
+          <Route path={'/'} element={<Login login={login}/>}></Route>
           <Route path={'/home'} element={<Home/>}></Route>
+          <Route path={'/custom'} element={<FormCustom/>}></Route>
+          <Route path={'/Product'} element={<CreateProduct/>}></Route>
+
         </Routes>
         
     </>
