@@ -36,9 +36,8 @@ export default function Login ({login}) {
         })
         validatepassword({...userData,[property]:value}, setErrors,errors)
     }
-    const handleSubmit = (e)=>{ // manda indormacion 
+    const handleSubmit = (e)=>{ // manda info
         e.preventDefault()
-      
         login(userData)
     }
 
@@ -71,7 +70,7 @@ export default function Login ({login}) {
                 }
             
             </div>
-              
+            
                 
             
             
