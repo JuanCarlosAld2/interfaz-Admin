@@ -16,7 +16,9 @@ import axios from 'axios';
         rate: "",
         count: "",
         price: "",
-        category: ""
+        category: "",
+        stock:""
+        
     });
 
     const [image, setImage] = useState("")
@@ -75,6 +77,7 @@ const uplooadImage = async (e) => {
     },
     price: Number(productData.price),
     category: [productData.category],
+    stock:Number(productData.stock)
   };
 
   // Llamas a la acción de Redux pasando el objeto formateado
@@ -137,6 +140,12 @@ const uplooadImage = async (e) => {
 
             <label htmlFor="category">category</label>
             <input type="text" value={productData.category} name='category' onChange={handleInputs} />
+
+            <br/>
+
+            <label htmlFor="stock">stock</label>
+            <input type="text" value={productData.stock} name='stock' onChange={handleInputs} />
+
             <br/>
             <button type="submit">Guardar Producto</button>
         </form>
