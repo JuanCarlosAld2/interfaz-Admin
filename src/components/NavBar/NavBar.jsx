@@ -3,6 +3,10 @@ import style from './NavBar.module.css';
 
 
 const NavBar = () => {
+    const handleLogout = () => {
+        dispatch(logout());
+        history.push("/");
+      };
 return (
     <div className={style.mainContainer}>
     <nav className={style.NavBar}>
@@ -26,8 +30,8 @@ return (
                 Orders
             </Link>
             </div>
-            <div className={style.divLink}>
-            <Link className={style.container} to="/">
+            <div className={style.divLink} >
+            <Link className={style.container} to="/" onClick={handleLogout}>
                 Logout
             </Link>
             </div>
