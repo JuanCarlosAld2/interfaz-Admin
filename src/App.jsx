@@ -5,17 +5,20 @@ import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import FormCustom from './components/FormCustom/FormCustom';
 import  CreateProduct from './components/CreateProduct/CreateProduct';
+import { useSelector } from 'react-redux';
 
 function App() {
 
   const navigate = useNavigate();
 
   const [access,setAccess] =useState(false);
-  const EMAIL = 'admin@gmail.com';
-  const PASSWORD = 'admin123';
+//   const EMAIL = 'admin@gmail.com';
+//   const PASSWORD = 'admin123';
+
+  const user = useSelector((state) => state.user);
 
   function login(userData) {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
+    if (user.email === userData.email) {
       setAccess(true);
       navigate('/home');
     }else{
@@ -23,9 +26,9 @@ function App() {
     }
 }
 
-//  useEffect(() => {
-//   !access && navigate('/');
-// }, [access, navigate]);
+ useEffect(() => {
+  !access && navigate('/');
+}, [access, navigate]);
 
   return (
     <>
