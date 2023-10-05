@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { useDispatch} from 'react-redux';
 import {createCustom} from '../../redux/actions/actions'
+import style from '../CreateProduct/CreateProduct.module.css'
 
 function FormCustom() {
 
@@ -40,7 +41,7 @@ function FormCustom() {
 
     }
 return (
-<form onSubmit={handleSubmit}>
+<form onSubmit={handleSubmit} className={style.container}>
         <h2>CREATE CUSTOMER</h2>
         <br/>
         <label htmlFor="name">Name: </label>
