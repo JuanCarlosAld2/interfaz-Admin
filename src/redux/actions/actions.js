@@ -6,6 +6,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_GET_USER = "LOGIN_GET_USER"
 export const LOGOUT = "LOGOUT"
+export const ID= "ID"
 
 
 export const getAllFurnitures = () => {
@@ -49,7 +50,7 @@ export function createProduct(product) {
 export function updateProduct(id, product) {
     return async (dispatch) => {
       try {
-        // console.log("actions:::",product);
+        //console.log("actions:::",id,product);
         const URL = `http://localhost:3001/product/update/${id}`;
         await axios.put(URL, product);
         alert("producto creado con exito");
@@ -116,3 +117,11 @@ export const logout = () => {
     type: LOGOUT,
   };
 };
+
+
+export const generarId= (id) =>{
+  return{
+    type:ID,
+    payload:id
+  }
+}

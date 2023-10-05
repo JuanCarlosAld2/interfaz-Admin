@@ -3,9 +3,11 @@ import { useDispatch } from "react-redux";
 import { createProduct, updateProduct } from "../../redux/actions/actions";
 import axios from "axios";
 import style from "../CreateProduct/CreateProduct.module.css";
+import { useSelector } from 'react-redux';
+export default function EditProduct() {
 
-export default function EditProduct({id}) {
   const dispatch = useDispatch();
+  const id = useSelector((state) => state.id);
   const [productData, setProductData] = useState({
     name: "",
     colors: "",
@@ -205,23 +207,3 @@ export default function EditProduct({id}) {
     </form>
   );
 }
-
-// const uplooadImage = async (e) =>{
-//   const files = e.target.files;
-//   const data = new FormData();
-//   data.append("file",files[0]);
-//   data.append("upload_preset","proyecto");
-//   setLoading(true);
-//   const res = await fetch (
-//     "https://api.cloudinary.com/v1_1/dgbmueahi/upload",
-//     {
-//       method:"POST",
-//       body: data,
-//     }
-//   )
-//   const file = await res.json();
-//   //console.log(res);
-//   setImage(file.secure_url)
-//   console.log(file.secure_url);
-//   setLoading(false)
-// }

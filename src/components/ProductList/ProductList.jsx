@@ -7,6 +7,7 @@ import { getAllFurnitures } from '../../redux/actions/actions';
 import { Link } from 'react-router-dom';
 // import { deleteProduct } from '../../redux/actions/actions';
 // import { getAllFurnitures } from '../../redux/actions/actions';
+import { generarId } from '../../redux/actions/actions';
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ function ProductList() {
     }
   };
 
+  const handelerId = (id) =>{
+    dispatch(generarId(id))
+  }
+
   return (
     <div>
       <h2>Lista de Productos</h2>
@@ -66,8 +71,11 @@ function ProductList() {
               <td>{product.isActive ? 'Sí': 'No' }</td>
               <td>
                 <button style={{ margin: "5px" }} onClick={() => handleDeleteProduct(product.id)}>Eliminar</button>
-                <button style={{ margin: "5px" }}>
-                <Link to='/edit-product' id={product.id}>Editar</Link></button>
+
+                <button style={{ margin: "5px" }} onClick={()=> handelerId(product.id)}>
+                  <Link to='/edit-product'>Editar</Link>
+                </button>
+
               </td>
             </tr>
           ))}
@@ -78,97 +86,3 @@ function ProductList() {
 }
 
 export default ProductList;
-//_____________________________________________________________________________
-// import React, { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getAllFurnitures } from '../../redux/actions/actions';
-
-// function ProductList() {
-// const dispatch = useDispatch();
-// const allFurnitures = useSelector((state) => state.allFurnitures);
-
-// useEffect(() => {
-//     // Llamo a la acción que obtiene todas las furnitures
-//     dispatch(getAllFurnitures());
-// }, [dispatch]);
-
-// return (
-//     <div>
-//     {allFurnitures.map((furniture, index) => (
-//         <div key={index}>
-//         <div>
-//             <img src={furniture.image} alt={furniture.name}/>
-//         </div>
-//         <div>
-//             <h3>Name: {furniture.name}</h3>
-//             <h3>Colors: {furniture.colors.join(', ')}</h3>
-//             <h3>Price: {`${furniture.price} usd`}</h3>
-//             <h3>Category: {furniture.Categories?.map((item) => item.name).join(', ')}</h3>
-//         </div>
-//         </div>
-//     ))}
-//     </div>
-// );
-// }
-
-// // export default ProductList;
-//__________________________________________________________________
-
-// import React from "react";
-// import { useSelector } from "react-redux";
-// import { DataGrid } from "@mui/x-data-grid";
-
-// function ProductList() {
-//   const allFurnitures = useSelector((state) => state.allFurnitures);
-
-//   const columns = [
-//     {
-//       field: "id",
-//       headerName: "Id",
-//       type: "number",
-//       width: 90,
-//     },
-//     {
-//       field: "name",
-//       headerName: "Name",
-//       width: 150,
-//     },
-//     {
-//       field: "price",
-//       headerName: "Price",
-//       type: "number",
-//       width: 110,
-//     },
-//     {
-//       field: "stock",
-//       headerName: "Stock",
-//       type: "number",
-//       width: 110,
-//     },
-//   ];
-
-//   const rows = allFurnitures.map((furniture) => {
-//     const { id, name, price, stock, isActive } = furniture;
-//     return {
-//       id,
-//       name,
-//       price,
-//       stock,
-//       isActive,
-//     };
-//   });
-
-//   return (
-//     <div style={{ height: 400, width: "100%" }}>
-//       <DataGrid
-//         rows={rows}
-//         columns={columns}
-//         pageSize={5}
-//         checkboxSelection
-//         disableSelectionOnClick
-//       />
-//     </div>
-//   );
-// }
-
-// export default ProductList;
