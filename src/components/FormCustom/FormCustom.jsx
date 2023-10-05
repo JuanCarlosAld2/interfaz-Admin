@@ -1,8 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { useDispatch} from 'react-redux';
 import {createCustom} from '../../redux/actions/actions'
-
-
+import style from '../CreateProduct/CreateProduct.module.css'
 
 function FormCustom() {
 
@@ -27,35 +26,22 @@ function FormCustom() {
         "phoneNumber":"",
         "shippingAddress":"",
     })
-
-   
-      
-
     
     const handleInputs = (e) => {
         const { name, value } = e.target;
         setDataCustom({
-          ...dataCustom,
-          [name]: value,
+        ...dataCustom,
+        [name]: value,
         });
-
-      
-
-
-      };
-
-      
-
+    };
     const handleSubmit = (e)=>{ 
         e.preventDefault()
 
         dispatch(createCustom(dataCustom))
 
     }
-
-
-  return (
-   <form onSubmit={handleSubmit}>
+return (
+<form onSubmit={handleSubmit} className={style.container}>
         <h2>CREATE CUSTOMER</h2>
         <br/>
         <label htmlFor="name">Name: </label>
@@ -95,8 +81,8 @@ function FormCustom() {
         
         <button type='submit'>Crear cliente</button>        
 
-   </form>
-  )
+</form>
+)
 }
 
 export default FormCustom

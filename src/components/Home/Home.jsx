@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllFurnitures } from '../../redux/actions/actions';
+import ProductList from '../ProductList/ProductList';
 
 
-function Home() {
+const Home = () => {
+  const dispatch = useDispatch();
+  const allFurnitures = useSelector((state) => state.allFurnitures);
 
+  useEffect(() => {
+    dispatch(getAllFurnitures());
+  }, [dispatch]);
 
   return (
-    <>
-       
-        <h1>Estoy en home</h1>
-    </>
-  )
-}
+    <div style={{color: "aliceblue"}}>
+      
+      <h1>Lista de Productos</h1>
+      <ProductList allFurnitures={allFurnitures} />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
+
