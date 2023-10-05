@@ -1,4 +1,4 @@
-import { GET_ALL_FURNITURES, GET_ALL_ORDERS, LOGIN_GET_USER, LOGIN_SUCCESS, LOGOUT, ID, GET_ALL_USERS } from "./actions/actions";
+import { GET_ALL_FURNITURES, GET_ALL_ORDERS, LOGIN_GET_USER, LOGIN_SUCCESS, LOGOUT, ID, GET_ALL_USERS, ROLE } from "./actions/actions";
 
 const initialState = {
   prueba: [],
@@ -8,7 +8,8 @@ const initialState = {
   allCategory: [],
   token: null,
   user: {},
-  id:""
+  id:"",
+  role:""
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -54,6 +55,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return{
         ...state,
         id:payload
+      }
+    case ROLE:
+      return{
+        ...state,
+        role:payload
       }
 
     default:

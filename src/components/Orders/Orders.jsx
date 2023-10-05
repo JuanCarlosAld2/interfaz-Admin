@@ -1,15 +1,21 @@
 // import { useEffect } from 'react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllOrders } from '../../redux/actions/actions';
 // import { deleteProduct } from '../../redux/actions/actions';
 // import { getAllFurnitures } from '../../redux/actions/actions';
+import { updateStatus } from '../../redux/actions/actions';
 
 function Orders() {
   const dispatch = useDispatch();
   const allOrders = useSelector((state) => state.allOrders);
+  
+  // const [estado,setEstado] = useState({
+  //   completado:"completado",
+
+  // })
 
   useEffect(() => {
     dispatch(getAllOrders());
@@ -42,6 +48,27 @@ function Orders() {
   //     console.error(`Error al eliminar el producto con ordenId ${ordenId}:`, error);
     // }
   // };
+
+  const handleEdit = (id,estado) =>{
+    location.reload(true)
+    let status = null;
+    if(estado === "pendiente"){
+        status= "completado"
+
+        dispatch(updateStatus(id,status))
+    }
+    if (estado === "completado") {
+      status= "cancelado"
+      dispatch(updateStatus(id,status))
+    }
+
+    if(estado === "cancelado"){
+      status= "pendiente"
+      dispatch(updateStatus(id,status))
+    }
+
+
+  }
 
   return (
     <div style={{color: "aliceblue"}}>
@@ -77,7 +104,7 @@ function Orders() {
               <td>{product.total}</td>
               <td>
                 {/* <button style={{ margin: "5px" }}>Eliminar</button> */}
-                <button style={{ margin: "5px" }}>Editar</button>
+                <button style={{ margin: "5px" }} onClick={()=>handleEdit(product.ordenId,product.status)}>Editar</button>
                 {/* <Link to='/edit-product' ordenId={product.ordenId}></Link> */}
               </td>
             </tr>

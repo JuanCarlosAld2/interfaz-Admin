@@ -9,7 +9,7 @@ export const LOGOUT = "LOGOUT"
 export const ID= "ID"
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 export const GET_ALL_USERS = "GET_ALL_USERS"
-
+export const ROLE="ROLE"
 
 export const getAllFurnitures = () => {
   return async (dispatch) => {
@@ -29,7 +29,7 @@ export const getAllOrders = () => {
     return async (dispatch) => {
       try {
         const {data} = await axios.get("http://localhost:3001/order");
-        dispatch({ type: GET_ALL_USERS, payload: data });
+        dispatch({ type: GET_ALL_ORDERS, payload: data });
       } catch (error) {
         alert("Error al intentar renderizar los muebles")
         console.error("Error al intentar renderizar los muebles", error.message);
@@ -149,3 +149,47 @@ export const generarId= (id) =>{
     payload:id
   }
 }
+
+export const updateStatus = (id,estado) =>{
+  return async () =>{
+    try {
+
+      await axios.put(`http://localhost:3001/order/update-orden?ordenId=${id}&estado=${estado}`)
+      
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}
+
+
+export const deleteLogico = (id) =>{
+  return async ()=>{
+    try {
+      await axios.delete(`http://localhost:3001/user/${id}`);
+      //alert (`user con ID ${id} desactivado correctamente.`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}
+
+export const creteRole = (role) =>{
+return{
+  type: ROLE,
+  payload:role
+
+  }
+}
+
+
+export const updateUser = async (id, data) => {
+  try {
+    await axios.put(`http://localhost:3001/user/update-custom/${id}`, data);
+   alert("usuario actualizado correctamente")
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+

@@ -32,9 +32,9 @@ function App() {
     }
 }
 
- useEffect(() => {
-  !access && navigate('/');
-}, [access, navigate]);
+//  useEffect(() => {
+//   !access && navigate('/');
+// }, [access, navigate]);
 
   return (
     <>
