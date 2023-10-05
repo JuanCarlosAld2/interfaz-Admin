@@ -21,6 +21,11 @@ return (
             </Link>
             </div>
             <div className={style.divLink}>
+            <Link className={style.container} to="/Users">
+                Users
+            </Link>
+            </div>
+            <div className={style.divLink}>
             <Link className={style.container} to="/custom">
                 Create User
             </Link>
