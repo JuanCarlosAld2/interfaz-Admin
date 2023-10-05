@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { generarId, getAllUsers } from '../../redux/actions/actions';
 // import { deleteuser } from '../../redux/actions/actions';
 // import { getAllFurnitures } from '../../redux/actions/actions';
+import { deleteLogico } from '../../redux/actions/actions';
 
 function Users() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function Users() {
   }, []);
 
   const data = allUsers.map((e) => {
-    const { id, name, lastName, phoneNumber, email, shippingAddress, defaultPaymentMethod, isActive } = e;
+    const { id, name, lastName, phoneNumber, email, shippingAddress, defaultPaymentMethod, isActive, role } = e;
     return {
       id,
       name,
@@ -26,23 +27,18 @@ function Users() {
       email,
       defaultPaymentMethod,
       isActive,
+      role
       
     };
   });
 
-  const handleDeleteUser = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3001/user/${id}`);
-      // Despachar la acción de eliminar el usero aquí si es necesario
-      // dispatch(deleteuser(id));
-      dispatch(getAllUsers())
-      console.log(`usero con ID ${id} eliminado correctamente.`);
-    } catch (error) {
-      console.error(`Error al eliminar el usero con ID ${id}:`, error);
-    }
+  const handleDeleteUser = async (id,active) => {
+    alert("Esta sseguro de realizar esta accion:")
+    location.reload(true)
+    dispatch(deleteLogico(id))
   };
 
-  const handelerId = (id) =>{
+  const handelerId = (id,role) =>{
     dispatch(generarId(id))
   }
 
@@ -59,13 +55,14 @@ function Users() {
             <th>phoneNumber</th>
             <th>Email</th>
             <th>Activo</th>
-            
-            <th>defaultPaymentMethod</th>
+            <th>Role</th>
+            {/* <th>defaultPaymentMethod</th> */}
             
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
+          {console.log(allUsers)}
           {data.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
@@ -75,11 +72,12 @@ function Users() {
               <td>{user.phoneNumber}</td>
               <td>{user.email}</td>
               <td>{user.isActive ? 'Sí': 'No' }</td>
-              <td>{user.defaultPaymentMethod}</td>
+              <td>{user.role}</td>
+              {/* <td>{user.defaultPaymentMethod}</td> */}
               
               <td>
-                <button style={{ margin: "5px" }} onClick={() => handleDeleteUser(user.id)}>Eliminar</button>
-                <button style={{ margin: "5px" }} onClick={()=> handelerId(user.id)}>
+                <button style={{ margin: "5px" }} onClick={() => handleDeleteUser(user.id, user.isActive)}>Eliminar</button>
+                <button style={{ margin: "5px" }} onClick={()=> handelerId(user.id, user.role)}>
                   <Link to='/edit-user'>Editar</Link>
                 </button>
               </td>
@@ -92,6 +90,25 @@ function Users() {
 }
 
 export default Users;
+
+
+/*
+    try {
+      
+      
+      //dispatch(getAllUsers())
+     
+    } catch (error) {
+      console.error(`Error al eliminar el usero con ID ${id}:`, error);
+    }
+
+
+*/
+
+
+
+
+
 //_____________________________________________________________________________
 // import React, { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';

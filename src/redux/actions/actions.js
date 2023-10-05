@@ -9,7 +9,7 @@ export const LOGOUT = "LOGOUT"
 export const ID= "ID"
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 export const GET_ALL_USERS = "GET_ALL_USERS"
-
+export const ROLE="ROLE"
 
 export const getAllFurnitures = () => {
   return async (dispatch) => {
@@ -159,8 +159,37 @@ export const updateStatus = (id,estado) =>{
     } catch (error) {
       console.log(error.message);
     }
-   
+  }
+}
 
+
+export const deleteLogico = (id) =>{
+  return async ()=>{
+    try {
+      await axios.delete(`http://localhost:3001/user/${id}`);
+      //alert (`user con ID ${id} desactivado correctamente.`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}
+
+export const creteRole = (role) =>{
+return{
+  type: ROLE,
+  payload:role
 
   }
 }
+
+
+export const updateUser = async (id, data) => {
+  try {
+    await axios.put(`http://localhost:3001/user/update-custom/${id}`, data);
+   alert("usuario actualizado correctamente")
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
