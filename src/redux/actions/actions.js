@@ -7,6 +7,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_GET_USER = "LOGIN_GET_USER"
 export const LOGOUT = "LOGOUT"
 export const ID= "ID"
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 
 
 export const getAllFurnitures = () => {
@@ -23,6 +24,17 @@ export const getAllFurnitures = () => {
     }
   };
 };
+export const getAllOrders = () => {
+    return async (dispatch) => {
+      try {
+        const {data} = await axios.get("http://localhost:3001/order");
+        dispatch({ type: GET_ALL_ORDERS, payload: data });
+      } catch (error) {
+        alert("Error al intentar renderizar los muebles")
+        console.error("Error al intentar renderizar los muebles", error.message);
+      }
+    };
+  };
 export function createCustom(data) {
   return async (dispatch) => {
     try {
