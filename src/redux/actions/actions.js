@@ -11,7 +11,7 @@ export const LOGOUT = "LOGOUT"
 export const getAllFurnitures = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3001/product");
+      const response = await axios.get("http://localhost:3001/product/all-admin");
 
       // Ordenar los datos por id de menor a mayor
       const sortedData = response.data.sort((a, b) => a.id - b.id);
@@ -46,6 +46,18 @@ export function createProduct(product) {
     }
   };
 }
+export function updateProduct(id, product) {
+    return async (dispatch) => {
+      try {
+        // console.log("actions:::",product);
+        const URL = `http://localhost:3001/product/update/${id}`;
+        await axios.put(URL, product);
+        alert("producto creado con exito");
+      } catch (error) {
+        console.error("No se puedo crear producto", error.message);
+      }
+    };
+  }
 export const deleteProduct = (id) => {
   return async function (dispatch) {
     await axios.delete(`http://localhost:3001/product/${id}`);

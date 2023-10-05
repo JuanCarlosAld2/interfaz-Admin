@@ -2,6 +2,7 @@ import React, {  useState } from 'react';
 import { useDispatch } from "react-redux";
 import {createProduct} from '../../redux/actions/actions'
 import axios from 'axios';
+import style from './CreateProduct.module.css'
 
 
   const CreateProduct = (props) => {
@@ -87,7 +88,8 @@ const uplooadImage = async (e) => {
       
 
     return (
-        <form onSubmit={handleSubmit} encType='multipart/form-data' action='/product/create' method='POST' >
+      
+        <form onSubmit={handleSubmit} encType='multipart/form-data' action='/product/create' method='POST' className={style.container} >
             <label htmlFor="name">Nombre del producto</label>
             <input type="text" value={productData.name} name="name" onChange={handleInputs} />
 

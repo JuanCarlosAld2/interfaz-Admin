@@ -6,10 +6,13 @@ import Home from './components/Home/Home';
 import FormCustom from './components/FormCustom/FormCustom';
 import  CreateProduct from './components/CreateProduct/CreateProduct';
 import { useSelector } from 'react-redux';
+import NavBar from './components/Navbar/NavBar';
+import EditProduct from './components/EditProduct/EditProduct';
 
 function App() {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [access,setAccess] =useState(false);
 //   const EMAIL = 'admin@gmail.com';
@@ -32,11 +35,13 @@ function App() {
 
   return (
     <>
+    {location.pathname !== "/" && <NavBar/>}
         <Routes>
-          <Route path={'/'} element={<Login login={login}/>}></Route>
-          <Route path={'/home'} element={<Home/>}></Route>
-          <Route path={'/custom'} element={<FormCustom/>}></Route>
-          <Route path={'/product'} element={<CreateProduct/>}></Route>
+          <Route path={'/'} element={<Login login={login}/>}/>
+          <Route path={'/home'} element={<Home/>}/>
+          <Route path={'/custom'} element={<FormCustom/>}/>
+          <Route path={'/product'} element={<CreateProduct/>}/>
+          <Route path={'/edit-product'} element={<EditProduct/>}/>
 
         </Routes>
         
