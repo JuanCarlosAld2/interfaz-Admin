@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import style from '../Detail/Detail.module.css';
+// import style from '../Detail/Detail.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllFurnitures, editProduct, deleteProduct } from '../../components/redux/actions/Actions';
 
