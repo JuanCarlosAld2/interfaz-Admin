@@ -1,13 +1,10 @@
-<<<<<<< HEAD
-import { GET_ALL_FURNITURES, LOGIN_GET_USER, LOGIN_SUCCESS, LOGOUT,ID } from "./actions/actions";
-=======
-import { GET_ALL_FURNITURES, GET_ALL_ORDERS, LOGIN_GET_USER, LOGIN_SUCCESS, LOGOUT } from "./actions/actions";
->>>>>>> af8daf07208625b99403a6e0d765a6d75cb91b4c
+import { GET_ALL_FURNITURES, GET_ALL_ORDERS, LOGIN_GET_USER, LOGIN_SUCCESS, LOGOUT, ID, GET_ALL_USERS } from "./actions/actions";
 
 const initialState = {
   prueba: [],
   allFurnitures: [],
   allOrders: [],
+  allUsers: [],
   allCategory: [],
   token: null,
   user: {},
@@ -29,6 +26,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         allOrders: payload
       };
+      case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: payload
+      };
+      
     case LOGIN_SUCCESS:
       return {
         ...state,
