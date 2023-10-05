@@ -8,6 +8,7 @@ import  CreateProduct from './components/CreateProduct/CreateProduct';
 import { useSelector } from 'react-redux';
 import NavBar from './components/Navbar/NavBar';
 import EditProduct from './components/EditProduct/EditProduct';
+import Orders from './components/Orders/Orders';
 
 function App() {
 
@@ -42,6 +43,8 @@ function App() {
           <Route path={'/custom'} element={<FormCustom/>}/>
           <Route path={'/product'} element={<CreateProduct/>}/>
           <Route path={'/edit-product'} element={<EditProduct/>}/>
+          <Route path={'/orders'} element={<Orders/>}/>
+
 
         </Routes>
         
