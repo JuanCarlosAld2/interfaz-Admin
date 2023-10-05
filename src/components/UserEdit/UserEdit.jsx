@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import style from '../Detail/Detail.module.css';
+import { useParams, useNavigate } from 'react-router-dom';
+// import style from '../';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser, editUser, deleteProduct } from '../../components/redux/actions/Actions';
+import { editProduct, deleteProduct, getAllUsers } from '../../redux/actions/actions';
 
 const UserEdit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const allUser = useSelector((state) => state.allUser);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [usersEditado, setUsersEditado] = useState({
     id: '',
@@ -23,7 +23,7 @@ const UserEdit = () => {
 
   useEffect(() => {
     if (!allUser.length) {
-      dispatch(getAllUser());
+      dispatch(getAllUsers());
     }
   }, [dispatch, allUser]);
 
@@ -42,11 +42,11 @@ const UserEdit = () => {
 
   const handleEditSubmit = async () => {
     try {
-      await dispatch(editUser(usersEditado));
+      await dispatch(editProduct(usersEditado));
       setEdicionExitosa(true);
       
       // Redirige al usuario a la página de inicio después de guardar los cambios.
-      history.push('/home');
+      navigate.push('/home');
     } catch (error) {
       console.error('Error al editar el producto:', error);
     }
@@ -54,13 +54,13 @@ const UserEdit = () => {
 
 
   const redireccionarAHome = () => {
-    history.push('/home');
+    navigate.push('/home');
   };
 
   const handleDeleteClick = async () => {
     try {
       await dispatch(deleteProduct(id));
-      history.push('/home');
+      navigate.push('/home');
       setEliminacionExitosa(true);
     } catch (error) {
       console.error('Error al eliminar el producto:', error);

@@ -28,7 +28,7 @@ export const getAllFurnitures = () => {
 export const getAllOrders = () => {
     return async (dispatch) => {
       try {
-        const {data} = await axios.get("http://localhost:3001/user");
+        const {data} = await axios.get("http://localhost:3001/order");
         dispatch({ type: GET_ALL_USERS, payload: data });
       } catch (error) {
         alert("Error al intentar renderizar los muebles")
@@ -39,7 +39,7 @@ export const getAllOrders = () => {
   export const getAllUsers = () => {
     return async (dispatch) => {
       try {
-        const {data} = await axios.get("http://localhost:3001/order");
+        const {data} = await axios.get("http://localhost:3001/user");
         dispatch({ type: GET_ALL_USERS, payload: data });
       } catch (error) {
         alert("Error al intentar renderizar los muebles")
